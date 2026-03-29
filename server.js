@@ -4,14 +4,12 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-// Serve static files from current directory
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(__dirname));
 
-// Serve the HTML file on root
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'Obey.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
 });
